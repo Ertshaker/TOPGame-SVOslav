@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,117 +11,83 @@
 {% include 'header.html' %}
 <div class="wrapper">
     <div class="first-place">
-    <div class="game-card">
-        <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
-        <div class="game-info">
-            <h2 class="gold-gradient">Dishonored: Death of the Outsider</h2>
-            <p>Рейтинг критиков</p>
-            <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-            <p>Рейтинг пользователей</p>
-            <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-        </div>
-    </div>
-</div>
-<div class="too-close">
-    <div class="second-place">
         <div class="game-card">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
+            <img src="{{top1.path_to_img.url}}" alt="ТИММИИИ">
             <div class="game-info">
-                <h2 class="silver-gradient">Игра Нейм</h2>
+                <h2 class="gold-gradient">{{top1.name}}</h2>
                 <p>Рейтинг критиков</p>
                 <div class="rating">
-                    <a>12.0</a>
+                    <a>{{top1.general_rate}}</a>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </div>
                 <p>Рейтинг пользователей</p>
                 <div class="rating">
-                    <a>12.0</a>
+                    <a>{{top1.user_rate}}</a>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </div>
             </div>
         </div>
     </div>
-    <div class="third-place">
-        <div class="game-card">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
-            <div class="game-info">
-                <h2 class="bronze-gradient">Игра Нейм</h2>
-                <p>Рейтинг критиков</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
+    <div class="too-close">
+        <div class="second-place">
+            <div class="game-card">
+                <img src="{{top2.path_to_img.url}}" alt="ТИММИИИ">
+                <div class="game-info">
+                    <h2 class="silver-gradient">{{top2.name}}</h2>
+                    <p>Рейтинг критиков</p>
+                    <div class="rating">
+                        <a>{{top2.general_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
+                    <p>Рейтинг пользователей</p>
+                    <div class="rating">
+                        <a>{{top2.user_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
                 </div>
-                <p>Рейтинг пользователей</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
+            </div>
+        </div>
+        <div class="third-place">
+            <div class="game-card">
+                <img src="{{top3.path_to_img.url}}" alt="ТИММИИИ">
+                <div class="game-info">
+                    <h2 class="bronze-gradient">{{top3.name}}</h2>
+                    <p>Рейтинг критиков</p>
+                    <div class="rating">
+                        <a>{{top3.general_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
+                    <p>Рейтинг пользователей</p>
+                    <div class="rating">
+                        <a>{{top3.user_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="loosers">
-    <div class="more-place">
-        <div class="game-card">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
-            <div class="game-info">
-                <h2>Игра Нейм</h2>
-                <p>Рейтинг критиков</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-                <p>Рейтинг пользователей</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="more-place">
-        <div class="game-card">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
-            <div class="game-info">
-                <h2>Игра Нейм</h2>
-                <p>Рейтинг критиков</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-                <p>Рейтинг пользователей</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
+    <div class="loosers">
+        {% for game in sorted_games %}
+        <div class="more-place">
+            <div class="game-card">
+                <img src="{{ game.path_to_img.url }}" alt="ТИММИИИ">
+                <div class="game-info">
+                    <h2>{{game.name}}</h2>
+                    <p>Рейтинг критиков</p>
+                    <div class="rating">
+                        <a>{{game.general_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
+                    <p>Рейтинг пользователей</p>
+                    <div class="rating">
+                        <a>{{game.user_rate}}</a>
+                        <img src="{% static 'img/index/star-icon.svg' %}">
+                    </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    <div class="more-place">
-        <div class="game-card">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ТИММИИИ">
-            <div class="game-info">
-                <h2>Игра Нейм</h2>
-                <p>Рейтинг критиков</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-                <p>Рейтинг пользователей</p>
-                <div class="rating">
-                    <a>12.0</a>
-                    <img src="{% static 'img/index/star-icon.svg' %}">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 </body>
 </html>
