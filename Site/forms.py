@@ -3,8 +3,7 @@ import re
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.validators import UnicodeUsernameValidator
-
-from Site.models import Meme, Account
+from Site.models import Game, Account
 
 
 def check_username(text):
@@ -54,27 +53,6 @@ class LoginForm(forms.Form):
                                    attrs={'type': 'password', 'class': 'form-input', 'placeholder': 'Пароль'}))
 
 
-class AddMemeForm(forms.ModelForm):
-    class Meta:
-        model = Meme
-        fields = ['name', 'date', 'description',
-                  'history', 'meaning', 'cultural_influence',
-                  'using_examples', 'path_to_img']
-        labels = {'name': 'Название', 'date': 'Дата появления', 'description': 'Описание',
-                  'history': 'История происхождения', 'path_to_img': 'Изображение мема',
-                  'meaning': 'Значение и символика', 'cultural_influence': 'Культурное влияние',
-                  'using_examples': 'Примеры и использование'}
-        widgets = {'name': forms.TextInput(attrs={'placeholder': 'Имя мема'}),
-                   'date': forms.TextInput(attrs={'type': 'date', 'placeholder': 'Дата появления'}),
-                   'description': forms.TextInput(attrs={'placeholder': 'Описание'}),
-                   'history': forms.TextInput(attrs={'placeholder': 'История происхождения'}),
-                   'meaning': forms.TextInput(attrs={'placeholder': 'Значение и символика'}),
-                   'cultural_influence': forms.TextInput(attrs={'placeholder': 'Культурное влияние'}),
-                   'using_examples': forms.TextInput(attrs={'placeholder': 'Примеры и использование'}),
-                   'path_to_img': forms.ClearableFileInput(attrs={'class': 'fileinput'})}
-
-    additional_image = forms.ImageField(label='Дополнительное изображение', required=False, widget=forms.ClearableFileInput(attrs={'class': 'fileinput'}))
-
 
 class ChangePasswordForm(forms.Form):
     old_password = forms.CharField(label='Старый пароль', required=True, max_length=255,
@@ -98,20 +76,3 @@ class ChangeAvatarForm(forms.Form):
             visible.field.widget.attrs['class'] = 'Change_avatar'
 
     image = forms.ImageField(label='Новый аватар', widget=forms.FileInput(attrs={"id": "image_field"}))
-
-class UserDetailView(DetailView):
-    model = Account
-    template_name = 'profile.html'
-    context_object_name = 'user'
-    extra_context = {}
-
-    def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            HttpResponseRedirect('/login', locals())
-        user = self.get_object()
-        self.extra_context['page_name'] = user.username
-        return super().get(request, *args, **kwargs)
-
-    def get_object(self, queryset=None):
-        username = self.kwargs['username']
-        return Account.objects.get(username=username)

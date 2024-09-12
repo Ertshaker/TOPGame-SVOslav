@@ -1,22 +1,29 @@
-from django.shortcuts import render
 from Site.models import *
+from Site.forms import *
+from django.views.generic import DetailView, UpdateView
+import datetime
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
+from django.shortcuts import render, reverse
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
 def index_view(request):
-    games = Game.object.all()
+    games = Game.objects.all()
     return render(request, 'index.html',
                   {'games': games})
 
-def GameDetailView(DetailView):
+class GameDetailView(DetailView):
     model = Game
-    template_name = game.html
+    template_name = 'game.html'
     context_object_name = 'game'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         game = self.get_object()  # Получаем объект Game
-        meme_gallery = MemeGallery.objects.filter(meme=meme.id)
         context['page_name'] = game.name
         return context
 

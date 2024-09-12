@@ -9,7 +9,7 @@ class Game(models.Model):
     general_rate = models.TextField()
     user_rate = models.TextField()
     game_informer = models.TextField()
-    path_to_img = models.ImageField(upload_to='memes/')
+    path_to_img = models.ImageField(upload_to='games/')
 
     def get_absolute_url(self):
         return f'/game/id{self.id}'
