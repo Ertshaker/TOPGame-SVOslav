@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/index_styles.css' %}">
 </head>
 <body bgcolor="gray">
 {% include 'header.html' %}
+
+<div class="game-list">
+    ТУТ ЦИКЛЫ
+    <div class="game-card">
+        <div class="game-rating">
+            <a>12.0</a>
+            <img src="{% static 'img/index/star-icon.svg' %}">
+        </div>
+        <div class="game-image"><img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}" alt="ГОЛАЯ ВИРДЖИНИЯ"></div>
+        <div class="game-name">
+            <a>Кризис 3</a>
+        </div>
+    </div>
+    <div class="game-card">
+        <div class="game-image"><img src="тут путь" alt="ГОЛАЯ ВИРДЖИНИЯ"></div>
+        <div class="game-name">тут имя</div>
+    </div>
+</div>
+ТУТ ЦИКЛЫ
 </body>
 </html>

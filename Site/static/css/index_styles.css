@@ -1,0 +1,54 @@
+.game-card {
+    position: relative;
+}
+
+.game-rating {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    background: gray;
+    border-radius: 10px;
+    padding: 5px;
+    right: 10px;
+    top: 10px;
+}
+
+.game-rating > img {
+    height: 20px;
+    width: 20px;
+    align-self: start;
+    padding-left: 5px;
+}
+
+.game-rating > a {
+    align-self: flex-end;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.game-list {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.game-image {
+    border: 3px solid black;
+    height: 400px;
+    width: 400px;
+    border-radius: 20px;
+}
+
+.game-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+
+}
+
+.game-name {
+    position: relative;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: white;
+    font-size: 28px;
+}
