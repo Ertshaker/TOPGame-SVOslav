@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+    {% for game in sorted_games %}
+        {{ game.name }}
+        {{ game.general_rate }}
+    {% endfor %}
 
+    <div>
+    <div>{{top1.name}} {{top1.general_rate}}</div>
+    <div>{{top2.name}} {{top2.general_rate}}</div>
+    <div>{{top3.name}} {{top3.general_rate}}</div>
+    </div>
 </body>
 </html>
