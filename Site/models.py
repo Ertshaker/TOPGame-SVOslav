@@ -21,12 +21,11 @@ class Account(AbstractUser):
     class Meta(AbstractUser.Meta):
         swappable = "AUTH_USER_MODEL"
 
-class Raiting(models.Model):
+class Rating(models.Model):
     class Meta:
         unique_together = ('user', 'game')
 
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     text = models.TextField()
-    rate = models.IntegerField()
-    suka = models.TextField()
+    rate = models.FloatField()
