@@ -1,7 +1,9 @@
 {% load static %}
 
 <header>
-    <a>TOPGame</a>
-    <a>Рейтинг</a>
-    <img src="{% static 'img/profile_icon.svg' %}">
+    <a class="link" href="/">TOPGame</a>
+    <a class="link" href="/rating">Рейтинг</a>
+    <a style="margin-left: auto" class="link" href="/login">
+        <img class="profile-logo" src="{% static 'img/profile_icon.svg' %}">
+    </a>
 </header>

@@ -1,0 +1,76 @@
+* {
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+}
+
+h2 {
+    font-family: Comfortaa, sans-serif;
+    font-size: 48px;
+    margin-bottom: 5px;
+    margin-top: 15%;
+}
+
+body {
+    background-size: cover;
+}
+
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 560px;
+    height: 520px;
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(217, 217, 217);
+}
+
+.wrapper .login {
+    background: rgba(165, 134, 199, 0.48);
+    border: none;
+    outline: none;
+    font-family: Comfortaa;
+    cursor: pointer;
+    font-size: 29px;
+    border-radius: 10px;
+    width: 164px;
+    height: 55px;
+    margin-top: 15px;
+}
+
+.form-input {
+    border: 3px solid black;
+    border-radius: 17px;
+    font-size: 24px;
+    font-family: Montserrat;
+    background: transparent;
+    align-items: center;
+    margin: 15px 15px 15px 15px;
+    width: 431px;
+    height: 69px;
+    padding: 0 20px 0 20px;
+}
+.button_back {
+    background: rgb(217, 217, 217) url('../img/login&registration/back_button.svg') no-repeat center;
+    background-size: 70%;
+    position: absolute;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 45px;
+    width: 93px;
+    height: 93px;
+    left: -35px;
+}
+
+p {
+    font-size: 18px;
+    font-family: Comfortaa, sans-serif;
+}
+
+a {
+    font-size: 23px;
+    font-family: Comfortaa, sans-serif;
+    text-decoration: none;
+}

@@ -24,5 +24,6 @@ urlpatterns = [
     path('login/', user_login),
     path('authorization/', user_register),
     path('logout/', user_logout),
+    path('rating', rating)
 
 ]

@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .game-card {
     position: relative;
 }
@@ -51,4 +55,11 @@
     font-family: 'Comic Sans MS';
     color: white;
     font-size: 28px;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    margin: 1%;
+    padding: 4%;
+    background: white;
 }
