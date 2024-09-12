@@ -3,12 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 class Game(models.Model):
     name = models.CharField(max_length=100)
-    metacritic = models.TextField()
+    metacritic = models.FloatField()
     description = models.TextField()
-    IGN = models.TextField()
-    general_rate = models.TextField()
-    user_rate = models.TextField()
-    game_informer = models.TextField()
+    IGN = models.FloatField()
+    general_rate = models.FloatField()
+    user_rate = models.FloatField()
+    game_informer = models.FloatField()
     path_to_img = models.ImageField(upload_to='games/')
 
     def get_absolute_url(self):

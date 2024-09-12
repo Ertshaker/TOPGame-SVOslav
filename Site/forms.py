@@ -52,27 +52,3 @@ class LoginForm(forms.Form):
                                widget=forms.PasswordInput(
                                    attrs={'type': 'password', 'class': 'form-input', 'placeholder': 'Пароль'}))
 
-
-
-class ChangePasswordForm(forms.Form):
-    old_password = forms.CharField(label='Старый пароль', required=True, max_length=255,
-                                   widget=forms.PasswordInput(
-                                       attrs={'type': 'password', 'placeholder': 'Старый пароль'}))
-    new_password = forms.CharField(label='Новый пароль', required=True, max_length=255,
-                                   widget=forms.PasswordInput(
-                                       attrs={'type': 'password', 'placeholder': 'Новый пароль'}),
-                                   validators=[check_password])
-
-
-class AddFriendForm(forms.Form):
-    friend_name = forms.CharField(label='Имя друга', max_length=30,
-                                  widget=forms.TextInput(attrs={'type': 'text'}))
-
-
-class ChangeAvatarForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(ChangeAvatarForm, self).__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'Change_avatar'
-
-    image = forms.ImageField(label='Новый аватар', widget=forms.FileInput(attrs={"id": "image_field"}))

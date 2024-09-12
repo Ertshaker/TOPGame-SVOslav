@@ -94,7 +94,14 @@ def user_logout(request):
 def rating(request):
     games = Game.objects.all()
 
-    sorted_games = games.order_by('general_rate')
+    top_games = games.order_by('-general_rate')
+    top1 = top_games[0]
+    top2 = top_games[1]
+    top3 = top_games[2]
+
+    sorted_games = Game.objects.exclude(id__in=[top1.id, top2.id, top3.id])
+
+
 
     return render(request, 'rating.html',
-                  {'sorted_games': sorted_games})
+                  {'sorted_games': sorted_games, 'top1': top1, 'top2': top2, 'top3': top3})
