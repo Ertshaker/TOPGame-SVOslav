@@ -27,6 +27,28 @@ class GameDetailView(DetailView):
         context['page_name'] = game.name
         return context
 
+    def post(self, request, *args, **kwargs):
+        game = self.get_object()
+        user: Account = request.user
+        if request.POST.get(""):
+            change_password_form = ChangePasswordForm(request.POST)
+            if not change_password_form.is_valid():
+                messages.error(request, 'Какое то из полей заполнено неверно!')
+                return HttpResponseRedirect(reverse('user-detail', kwargs={'username': user.username}))
+
+            if not user.check_password(change_password_form.cleaned_data['old_password']):
+                messages.error(request, 'Старый пароль введен неверно!')
+                return HttpResponseRedirect(reverse('user-detail', kwargs={'username': user.username}))
+
+            username = user.username
+            new_password = change_password_form.cleaned_data['new_password']
+            user.set_password(new_password)
+            user.save()
+            change_password_form.clean()
+
+            login(request, authenticate(username=username, password=new_password))
+
+
 
 def user_login(request):
     if request.method == 'POST':
