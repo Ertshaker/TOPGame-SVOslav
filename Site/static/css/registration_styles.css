@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 body {
     background-size: cover;
+    background: black;
 }
 
 .wrapper {
@@ -12,15 +16,15 @@ body {
     text-align: center;
     border-radius: 12px;
     padding: 10px 20px;
-    background: rgba(217, 217, 217);
+    background: white;
     backdrop-filter: blur(6px);
 }
 
 .wrapper h2 {
     position: relative;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-size: 48px;
-    font-family: Comfortaa;
+    font-family: "PT Sans";
     color: #000000;
 }
 
@@ -47,22 +51,26 @@ a.sign-up:hover {
 }
 
 .wrapper .register {
-    background: rgba(165, 134, 199, 0.48);
-    border: none;
+    background: white;
+    border: 2px solid black;
     outline: none;
     cursor: pointer;
-    font-weight: 600;
-    border-radius: 14px;
+    border-radius: 20px;
     width: 250px;
     height: 55px;
-    font-family: Comfortaa;
+    font-family: "PT Sans";
     font-size: 29px;
+}
+
+.register:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    border-radius: 17px;
+    border-radius: 20px;
     background: transparent;
     margin: 15px;
     border: 3px solid rgb(0, 0, 0);
@@ -70,7 +78,7 @@ input[type="email"] {
     height: 70px;
     padding: 20px 40px 20px 20px;
     backdrop-filter: blur(15px);
-    font-family: Montserrat;
+    font-family: "Open Sans";
     font-size: 28px;
 }
 
@@ -87,7 +95,7 @@ input ::placeholder {
 }
 
 .button_back {
-    background: rgb(217, 217, 217) url('../img/login&registration/back_button.svg') no-repeat center;
+    background: white url('../img/login&registration/back_button.svg') no-repeat center;
     background-size: 70%;
     position: absolute;
     border: none;
@@ -102,11 +110,19 @@ input ::placeholder {
 
 p {
     font-size: 18px;
-    font-family: Comfortaa, sans-serif;
+    font-family: "PT Sans", sans-serif;
 }
 
 a {
     font-size: 23px;
-    font-family: Comfortaa, sans-serif;
+    font-family: "PT Sans", sans-serif;
     text-decoration: none;
+    color: black;
+    padding: 0 10px 3px 10px;
+    border-radius: 20px;
+}
+
+a:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease;
 }

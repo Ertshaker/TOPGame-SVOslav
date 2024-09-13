@@ -61,7 +61,7 @@ class LoginForm(forms.Form):
 
 
 class AddReviewForm(forms.Form):
-    text = forms.CharField(label='Отзыв', required=True, widget=forms.TextInput(
-        attrs={'type': 'text', 'class': 'form-input', 'placeholder': 'Напишите своё мнение об игре'}))
+    text = forms.CharField(label='Отзыв', required=True, widget=forms.Textarea(
+        attrs={'type': 'text', 'class': 'text-input', 'placeholder': 'Напишите своё мнение об игре'}))
     rate = forms.FloatField(label='Оценка', required=True, widget=forms.NumberInput(
-        attrs={'type': 'number', 'class': 'form-input', 'placeholder': 'Рейтинг'}), validators=[check_review_rate])
+        attrs={'type': 'number', 'class': 'rating-input', 'placeholder': 'Рейтинг'}), validators=[check_review_rate])

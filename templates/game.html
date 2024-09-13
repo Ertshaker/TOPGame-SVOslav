@@ -10,7 +10,6 @@
 <body>
 {% include 'header.html' %}
 <div class="wrapper">
-
     <div class="game-card">
         <div class="game-info">
             <img src="{{game.path_to_img.url}}">
@@ -60,32 +59,35 @@
             <p style="font-size: 16px">{{game.description}}</p>
         </div>
     </div>
-</div>
+    <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
+    <div class="reviews">
+        <div class="own-review">
+            <div class="user">
+                <img src="{{request.user.avatar.url}}">
+                <span>{{request.user.username}}</span>
+            </div>
+            {% if request.user.is_authenticated %}
+            <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ AddReviewForm.text }}
+                {{ AddReviewForm.rate }}
+                <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
+            </form>
+            {% else %}
+            Мой отзыв
+            {{own_review.text}}
+            {{own_review.rate}}
+            {% endif %}
+        </div>
 
-<div class="reviews">
-    {% if request.user.is_authenticated %}
-    <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ AddReviewForm.text }}
-        {{ AddReviewForm.rate }}
-        <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
-    </form>
-    {% endif %}
-    <div class="own-review">
-        Мой отзыв
-        {{own_review.text}}
-        {{own_review.rate}}
-    </div>
-    <div class="other-reviews">
-        Отзывы
-        {% for review in ratings %}
+        <!--div class="other-reviews">
+            Отзывы
+            {% for review in ratings %}
             {{review.text}}
             {{review.rate}}
-        {% endfor %}
+            {% endfor %}
+        </div-->
     </div>
-
 </div>
-
-
 </body>
 </html>

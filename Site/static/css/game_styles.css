@@ -68,6 +68,74 @@ body > * {
 }
 
 .reviews {
+    display: flex;
     background-color: white;
-    margin-right: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.own-review {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-radius: 20px;
+    border: 2px solid black;
+    gap: 10px;
+    padding: 10px;
+}
+
+.user > span {
+    word-break: break-all;
+    font-size: 14px;
+}
+
+.user > img {
+    border-radius: 10000px;
+    border: 2px solid black;
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    align-self: center;
+}
+
+.leave-review {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.text-input {
+    font-size: 14px;
+    width: 600px;
+    height: 200px;
+    word-break: break-all;
+    overflow-y: auto;
+    resize: none;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+}
+
+.rating-input {
+    width: 90px;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-review-button {
+    align-self: center;
+    width: 150px;
+    background: white;
+    border-radius: 10px;
+    padding: 4px 0;
+    border: 2px solid black
+}
+
+.add-review-button:hover {
+    background: rgba(255,255,255, 0.1);
+    transition: 0.2s ease;
 }
