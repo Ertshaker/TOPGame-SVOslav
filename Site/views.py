@@ -12,7 +12,7 @@ from Site.models import *
 
 def index_view(request):
     games = Game.objects.all()
-    print('login' + request.user.username)
+    print('login' + request.user.username + str(request.user.avatar))
     return render(request, 'index.html',
                   {'games': games})
 
