@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, reverse
+from django.shortcuts import render
 from django.views.generic import DetailView
 
 from Site.forms import *
@@ -12,7 +12,6 @@ from Site.models import *
 
 def index_view(request):
     games = Game.objects.all()
-    print('login' + request.user.username + str(request.user.avatar))
     return render(request, 'index.html',
                   {'games': games})
 
@@ -60,11 +59,23 @@ class GameDetailView(DetailView):
 
             text = add_review_form.cleaned_data['text']
             rate = add_review_form.cleaned_data['rate']
+            if Rating.objects.filter(user=user.id, game=game.id).exists():
+                messages.error(request, 'Этот пользователь уже писал отзыв!')
+                return HttpResponseRedirect(f'/game/{game.id}', locals())
             review = Rating(user=user, game=game, text=text, rate=rate)
 
             review.save()
             add_review_form.clean()
-
+        game.user_rate = 0
+        reviews = Rating.objects.filter(game=game.id)
+        for review in reviews:
+            game.user_rate += review.rate
+        if len(reviews) == 0:
+            game.user_rate = 0
+        else:
+            game.user_rate /= len(reviews)
+        game.user_rate = round(game.user_rate, 2)
+        game.save()
         add_review_form = AddReviewForm()
         return render(request, 'game.html',
                       {"game": game,
@@ -120,6 +131,7 @@ def user_register(request):
         user = Account.objects.create_user(username, email, password)
         user.last_name = last_name
         user.first_name = first_name
+        user.avatar = form.cleaned_data.get('avatar')
 
         if user is None:
             return HttpResponseRedirect('/login', locals())
@@ -190,12 +202,12 @@ def rating(request):
     return render(request, 'rating.html',
                   {'sorted_games': sorted_games, 'top1': top1, 'top2': top2, 'top3': top3})
 
+
 class UserDetailView(DetailView):
     model = Account
     template_name = 'profile.html'
     context_object_name = 'user'
     extra_context = {}
-
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
