@@ -28,7 +28,7 @@ urlpatterns = [
     path('logout/', user_logout),
     path('rating/', rating),
     path('game/<int:pk>', GameDetailView.as_view(), name='game-detail'),
-    path('game/<slug:name>', GameDetailView.as_view(), name='game-detail'),
+    path('profile/<slug:username>', UserDetailView.as_view(), name='user-detail'),
 ]
 
 if settings.DEBUG:

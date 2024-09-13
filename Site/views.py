@@ -140,3 +140,23 @@ def rating(request):
 
     return render(request, 'rating.html',
                   {'sorted_games': sorted_games, 'top1': top1, 'top2': top2, 'top3': top3})
+
+class UserDetailView(DetailView):
+    model = Account
+    template_name = 'profile.html'
+    context_object_name = 'user'
+    extra_context = {}
+
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            HttpResponseRedirect('/login', locals())
+        user = self.get_object()
+        self.extra_context["is_current_user"] = request.user.username == kwargs["username"]
+        self.extra_context["Users"] = Account.objects.all()
+        self.extra_context['page_name'] = user.username
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        username = self.kwargs['username']
+        return Account.objects.get(username=username)
