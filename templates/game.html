@@ -60,5 +60,19 @@
         </div>
     </div>
 </div>
+
+<div class="reviews">
+    {% if request.user.is_authenticated %}
+    <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ AddReviewForm.text }}
+        {{ AddReviewForm.rate }}
+        <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
+    </form>
+    {% endif %}
+</div>
+<div class="own-review">
+    {{review}}
+</div>
 </body>
 </html>

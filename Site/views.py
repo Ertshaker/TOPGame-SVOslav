@@ -26,16 +26,27 @@ class GameDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         game = self.get_object()  # Получаем объект Game
         context['page_name'] = game.name
+
         return context
+
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+        review = Rating.objects.filter(user=user)
+        ratings = Rating.objects.exclude(user=user)()
+        self.extra_context["AddReviewForm"] = AddReviewForm()
+        self.extra_context["user"] = user
+        self.extra_context["ratings"] = ratings
+        self.extra_context["own_review"] = review
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         game = self.get_object()
         user: Account = request.user
-        if request.POST.get("add_review-input"):
+        if request.POST.get("add_review_input"):
             add_review_form = AddReviewForm(request.POST)
             if not add_review_form.is_valid():
                 messages.error(request, 'Какое то из полей заполнено неверно!')
-                return HttpResponseRedirect(reverse('game-detail', kwargs={'username': user.username}))
+                return HttpResponseRedirect(f'/game/{game.id}', locals())
 
             text = add_review_form.cleaned_data['text']
             rate = add_review_form.cleaned_data['rate']
@@ -46,7 +57,7 @@ class GameDetailView(DetailView):
 
         add_review_form = AddReviewForm()
         return render(request, 'game.html',
-                      {"user": user,
+                      {"game": game,
                        'is_current_user': request.user == user,
                        "AddReviewForm": add_review_form})
 
