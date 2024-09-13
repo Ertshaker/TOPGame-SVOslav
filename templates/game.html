@@ -10,6 +10,7 @@
 <body>
 {% include 'header.html' %}
 <div class="wrapper">
+
     <div class="game-card">
         <div class="game-info">
             <img src="{{game.path_to_img.url}}">
@@ -70,9 +71,21 @@
         <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
     </form>
     {% endif %}
+    <div class="own-review">
+        Мой отзыв
+        {{own_review.text}}
+        {{own_review.rate}}
+    </div>
+    <div class="other-reviews">
+        Отзывы
+        {% for review in ratings %}
+            {{review.text}}
+            {{review.rate}}
+        {% endfor %}
+    </div>
+
 </div>
-<div class="own-review">
-    {{review}}
-</div>
+
+
 </body>
 </html>
