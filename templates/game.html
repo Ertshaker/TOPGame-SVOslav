@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,52 +12,51 @@
 <div class="wrapper">
     <div class="game-card">
         <div class="game-info">
-            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}">
-            <span>ТУТ НАЗВАНИЕ</span>
+            <img src="{{game.path_to_img.url}}">
         </div>
         <table class="game-ratings">
             <tr>
-                <td style="font-size: 32px; font-weight: bold">NEN BIJHF</td>
+                <td style="font-size: 32px; font-weight: bold">{{game.name}}</td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Общий рейтинг критиков</span></td>
                 <td class="rating">
-                    <span>ТУТ ОЦЕНКА</span>
+                    <span>{{game.general_rate}}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Metacritic</span></td>
                 <td class="rating">
-                    <span>ТУТ ОЦЕНКА</span>
+                    <span>{{game.metacritic}}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">IGN</span></td>
                 <td class="rating">
-                    <span>ТУТ ОЦЕНКА</span>
+                    <span>{{game.IGN}}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Gameinformer</span></td>
                 <td class="rating">
-                    <span>ТУТ ОЦЕНКА</span>
+                    <span>{{game.game_informer}}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span>Оценки пользователей</span></td>
                 <td class="rating">
-                    <span>ТУТ ОЦЕНКА</span>
+                    <span>{{game.user_rate}}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
         </table>
         <div class="game-description">
             <h2 style="font-size: 72px;margin-top: 0">Описание</h2>
-            <p style="font-size: 16px">ТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕ</p>
+            <p style="font-size: 16px">{{game.description}}</p>
         </div>
     </div>
 </div>

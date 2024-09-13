@@ -1,13 +1,12 @@
-from Site.models import *
-from Site.forms import *
-from django.views.generic import DetailView, UpdateView
-import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.http import JsonResponse
 from django.shortcuts import render, reverse
-from django.views.decorators.cache import cache_page
+from django.views.generic import DetailView
+
+from Site.forms import *
+from Site.models import *
+
 
 # Create your views here.
 
@@ -15,6 +14,7 @@ def index_view(request):
     games = Game.objects.all()
     return render(request, 'index.html',
                   {'games': games})
+
 
 class GameDetailView(DetailView):
     model = Game
@@ -31,24 +31,24 @@ class GameDetailView(DetailView):
     def post(self, request, *args, **kwargs):
         game = self.get_object()
         user: Account = request.user
-        if request.POST.get(""):
-            change_password_form = ChangePasswordForm(request.POST)
-            if not change_password_form.is_valid():
+        if request.POST.get("add_review-input"):
+            add_review_form = AddReviewForm(request.POST)
+            if not add_review_form.is_valid():
                 messages.error(request, 'Какое то из полей заполнено неверно!')
-                return HttpResponseRedirect(reverse('user-detail', kwargs={'username': user.username}))
+                return HttpResponseRedirect(reverse('game-detail', kwargs={'username': user.username}))
 
-            if not user.check_password(change_password_form.cleaned_data['old_password']):
-                messages.error(request, 'Старый пароль введен неверно!')
-                return HttpResponseRedirect(reverse('user-detail', kwargs={'username': user.username}))
+            text = add_review_form.cleaned_data['text']
+            rate = add_review_form.cleaned_data['rate']
+            review = Rating(user=user, game=game, text=text, rate=rate)
 
-            username = user.username
-            new_password = change_password_form.cleaned_data['new_password']
-            user.set_password(new_password)
-            user.save()
-            change_password_form.clean()
+            review.save()
+            add_review_form.clean()
 
-            login(request, authenticate(username=username, password=new_password))
-
+        add_review_form = AddReviewForm()
+        return render(request, 'game.html',
+                      {"user": user,
+                       'is_current_user': request.user == user,
+                       "AddReviewForm": add_review_form})
 
 
 def user_login(request):
@@ -74,6 +74,7 @@ def user_login(request):
     else:
         form = LoginForm()
         return render(request, 'login.html', {'login_form': form})
+
 
 def user_register(request):
     if request.method == 'POST':
@@ -110,9 +111,11 @@ def user_register(request):
         form = RegistrationForm()
         return render(request, 'registration.html', {'registration_form': form})
 
+
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/', locals())
+
 
 def rating(request):
     games = Game.objects.all()
@@ -123,8 +126,6 @@ def rating(request):
     top3 = top_games[2]
 
     sorted_games = Game.objects.exclude(id__in=[top1.id, top2.id, top3.id])
-
-
 
     return render(request, 'rating.html',
                   {'sorted_games': sorted_games, 'top1': top1, 'top2': top2, 'top3': top3})

@@ -1,9 +1,9 @@
 import re
 
 from django import forms
-from django.contrib.auth.models import Group
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from Site.models import Game, Account
+
+from Site.models import Account
 
 
 def check_username(text):
@@ -21,6 +21,13 @@ def check_password(password):
         raise forms.ValidationError("Password should not have space")
     if len(password) < 8:
         raise forms.ValidationError("Password should have at least 8 characters")
+
+
+def check_review_rate(rate):
+    if rate > 10:
+        raise forms.ValidationError("Review rate should not exceed 10")
+    elif rate < 0:
+        raise forms.ValidationError("Review rate should not exceed 0")
 
 
 class RegistrationForm(forms.Form):
@@ -52,3 +59,9 @@ class LoginForm(forms.Form):
                                widget=forms.PasswordInput(
                                    attrs={'type': 'password', 'class': 'form-input', 'placeholder': 'Пароль'}))
 
+
+class AddReviewForm(forms.Form):
+    text = forms.CharField(label='Отзыв', required=True, widget=forms.TextInput(
+        attrs={'type': 'text', 'class': 'form-input', 'placeholder': 'Напишите своё мнение об игре'}))
+    rate = forms.FloatField(label='Оценка', required=True, widget=forms.NumberInput(
+        attrs={'type': 'number', 'class': 'form-input', 'placeholder': 'Рейтинг'}), validators=[check_review_rate])

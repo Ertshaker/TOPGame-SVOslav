@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Game(models.Model):
     name = models.CharField(max_length=100)
-    metacritic = models.FloatField()
+    metacritic = models.IntegerField()
     description = models.TextField()
     IGN = models.FloatField()
     general_rate = models.FloatField()

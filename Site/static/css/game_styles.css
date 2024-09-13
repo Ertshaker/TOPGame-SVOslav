@@ -33,6 +33,7 @@ body > * {
     width: 300px;
     border-radius: 20px;
     border: 3px solid black;
+    object-fit: cover;
 }
 
 .game-info > span {
@@ -44,6 +45,7 @@ body > * {
 .game-ratings {
     height: 450px;
     border-spacing: 20px;
+    width: 550px;
 }
 
 .game-ratings > * {

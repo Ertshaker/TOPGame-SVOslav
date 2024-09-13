@@ -27,7 +27,7 @@ urlpatterns = [
     path('authorization/', user_register),
     path('logout/', user_logout),
     path('rating/', rating),
-    path('game/<int:pk>', GameDetailView.as_view())
+    path('game/<int:pk>', GameDetailView.as_view(), name='game-detail'),
 
 ]
 
