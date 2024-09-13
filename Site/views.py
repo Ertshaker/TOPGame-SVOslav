@@ -20,6 +20,7 @@ class GameDetailView(DetailView):
     model = Game
     template_name = 'game.html'
     context_object_name = 'game'
+    extra_context = {}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

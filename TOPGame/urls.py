@@ -26,7 +26,8 @@ urlpatterns = [
     path('login/', user_login),
     path('authorization/', user_register),
     path('logout/', user_logout),
-    path('rating/', rating)
+    path('rating/', rating),
+    path('game/<int:pk>', GameDetailView.as_view())
 
 ]
 

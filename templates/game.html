@@ -1,10 +1,66 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/game_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header_styles.css' %}">
 </head>
 <body>
-
+{% include 'header.html' %}
+<div class="wrapper">
+    <div class="game-card">
+        <div class="game-info">
+            <img src="{% static 'img/Crysis 3 Maximum Edition PRO.png' %}">
+            <span>ТУТ НАЗВАНИЕ</span>
+        </div>
+        <table class="game-ratings">
+            <tr>
+                <td style="font-size: 32px; font-weight: bold">NEN BIJHF</td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold">Общий рейтинг критиков</span></td>
+                <td class="rating">
+                    <span>ТУТ ОЦЕНКА</span>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold">Metacritic</span></td>
+                <td class="rating">
+                    <span>ТУТ ОЦЕНКА</span>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold">IGN</span></td>
+                <td class="rating">
+                    <span>ТУТ ОЦЕНКА</span>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold">Gameinformer</span></td>
+                <td class="rating">
+                    <span>ТУТ ОЦЕНКА</span>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </td>
+            </tr>
+            <tr>
+                <td><span>Оценки пользователей</span></td>
+                <td class="rating">
+                    <span>ТУТ ОЦЕНКА</span>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </td>
+            </tr>
+        </table>
+        <div class="game-description">
+            <h2 style="font-size: 72px;margin-top: 0">Описание</h2>
+            <p style="font-size: 16px">ТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕТУТ ОПИСАНИЕ</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
