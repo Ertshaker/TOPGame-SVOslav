@@ -6,7 +6,7 @@
     <a style="margin-left: auto" class="link" href="/login">
         {% if request.user.is_authenticated and request.user.avatar %}
         <img class="profile-logo" src="{{request.user.avatar.url}}">
-        {% elif not request.user.is_authenticated %}
+        {% else %}
         <img style="border-radius: 0" class="profile-logo" src="{% static 'img/profile_icon.svg' %}">
         {% endif %}
     </a>
