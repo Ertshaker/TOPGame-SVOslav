@@ -5,12 +5,26 @@ body {
     background: black;
 }
 
+a {
+    display: block;
+    width: auto;
+}
+
 body > * {
     font-family: "Open Sans", sans-serif;
 }
 
 .game-card {
+    box-sizing: border-box;
     position: relative;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.game-card:hover {
+    background: lightgray;
+    transition: 0.3s ease;
 }
 
 .game-rating {
@@ -40,6 +54,9 @@ body > * {
 
 .game-list {
     display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    gap: 50px 0;
     justify-content: space-between;
 }
 

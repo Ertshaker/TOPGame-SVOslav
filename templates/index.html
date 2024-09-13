@@ -12,18 +12,19 @@
 {% include 'header.html' %}
 <div class="wrapper">
     <div class="game-list">
-    {% for game in games %}
-        <div class="game-card">
-            <div class="game-rating">
-                <a>{{ game.general_rate}}</a>
-                <img src="{% static 'img/index/star-icon.svg' %}">
+        {% for game in games %}
+            <div class="game-card" onclick="window.location='/game/{{game.id}}'">
+                <div class="game-rating">
+                    <a>{{ game.general_rate}}</a>
+                    <img src="{% static 'img/index/star-icon.svg' %}">
+                </div>
+                <div class="game-image"><img src="{{ game.path_to_img.url }}" alt="ГОЛАЯ ВИРДЖИНИЯ"
+                                             href="Game/{{game.id}}"></div>
+                <div class="game-name">
+                    <a>{{ game.name }}</a>
+                </div>
             </div>
-            <div class="game-image"><img src="{{ game.path_to_img.url }}" alt="ГОЛАЯ ВИРДЖИНИЯ" href="Game/{{game.id}}"></div>
-            <div class="game-name">
-                <a>{{ game.name }}</a>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
 </body>

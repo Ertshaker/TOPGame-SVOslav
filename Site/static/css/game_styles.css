@@ -53,6 +53,10 @@ body > * {
     padding-top: 10px;
 }
 
+.rating {
+    width: 80px;
+}
+
 .rating > img {
     width: 20px;
     height: 20px;

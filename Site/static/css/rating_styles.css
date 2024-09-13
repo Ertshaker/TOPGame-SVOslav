@@ -30,9 +30,11 @@ span {
 
 .too-close {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: row;
     margin-top: 50px;
+    gap: 20px;
 }
 
 .too-close .game-card {
@@ -45,6 +47,14 @@ span {
 .game-card {
     display: flex;
     width: 700px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.game-card:hover {
+    background: lightgray;
+    transition: 0.3s ease;
 }
 
 .game-card > img {
@@ -54,6 +64,7 @@ span {
     border-radius: 20px;
     border: 3px solid black;
     object-fit: cover;
+    align-self: center;
 }
 
 .game-info {
@@ -99,9 +110,11 @@ span {
 
 .loosers {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 50px;
+    gap: 20px;
 }
 
 .more-place {
@@ -119,11 +132,11 @@ span {
 }
 
 .more-place > .game-card > .game-info h2 {
-    font-size: 32px
+    font-size: 28px
 }
 
 .more-place > .game-card > .game-info p {
-    font-size: 24px
+    font-size: 22px
 }
 
 .wrapper {
