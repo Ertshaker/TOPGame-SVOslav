@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    margin: 0;
+    background: black;
+    font-family: "Open Sans", sans-serif;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    margin: 1%;
+    padding: 4%;
+    background: white;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+}
+
+.profile-image {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border: 4px solid black;
+    border-radius: 100000px;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 70px;
+    row-gap: 50px;
+}
+
+.info-field > span {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: "PT Sans", sans-serif;
+}
+
+.info-field > p {
+    font-size: 32px;
+    text-wrap: wrap;
+    word-break: break-all;
+    border-radius: 30px;
+    border: 2px solid black;
+    padding: 2px 20px 5px 20px;
+    background: rgba(0, 0, 0, 0.1);
+}

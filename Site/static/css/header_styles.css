@@ -13,11 +13,20 @@ header {
     font-size: 32px;
     text-decoration: none;
     font-family: "PT Sans", sans-serif;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.link:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transition: 0.2s ease;
 }
 
 .profile-logo {
-    position: relative;
-    align-self: flex-end;
-    height: 40px;
-    width: 40px;
+    font-size: 0;
+    align-items: flex-end;
+    height: 60px;
+    width: 60px;
+    border-radius: 100000px;
+    bottom: 0;
 }

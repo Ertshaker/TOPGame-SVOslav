@@ -4,6 +4,10 @@
     <a class="link" href="/">TOPGame</a>
     <a class="link" href="/rating">Рейтинг</a>
     <a style="margin-left: auto" class="link" href="/login">
-        <img class="profile-logo" src="{% static 'img/profile_icon.svg' %}">
+        {% if request.user.is_authenticated and request.user.avatar %}
+        <img class="profile-logo" src="{{request.user.avatar.url}}">
+        {% elif not request.user.is_authenticated %}
+        <img style="border-radius: 0" class="profile-logo" src="{% static 'img/profile_icon.svg' %}">
+        {% endif %}
     </a>
 </header>

@@ -12,6 +12,7 @@ from Site.models import *
 
 def index_view(request):
     games = Game.objects.all()
+    print('login' + request.user.username)
     return render(request, 'index.html',
                   {'games': games})
 
@@ -30,9 +31,10 @@ class GameDetailView(DetailView):
         return context
 
     def get(self, request, *args, **kwargs):
-        user = self.get_object()
+        game = self.get_object()
+        user = request.user
         review = Rating.objects.filter(user=user)
-        ratings = Rating.objects.exclude(user=user)()
+        ratings = Rating.objects.exclude(user=user)
         self.extra_context["AddReviewForm"] = AddReviewForm()
         self.extra_context["user"] = user
         self.extra_context["ratings"] = ratings
@@ -81,7 +83,7 @@ def user_login(request):
 
         login(request, user)
 
-        return HttpResponseRedirect(f'/user/{request.user.username}', locals())
+        return HttpResponseRedirect(f'/profile/{request.user.username}', locals())
     else:
         form = LoginForm()
         return render(request, 'login.html', {'login_form': form})

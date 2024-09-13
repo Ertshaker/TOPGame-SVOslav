@@ -1,10 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/profile_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header_styles.css' %}">
 </head>
 <body>
-    dsgsdfhsdhtr;,gsndkjsdftnretkjw ensjktheb
+{% include 'header.html' %}
+<div class="wrapper">
+    <div class="profile">
+        <img class="profile-image" src="{{ user.avatar.url }}" alt="АЛЬТУШКА">
+        <div class="profile-info">
+            <div class="info-field">
+                <span>Никнейм</span>
+                <p>{{user.username}}</p>
+            </div>
+            <div class="info-field">
+                <span>Почта</span>
+                <p>{{user.email}}</p>
+            </div>
+            <div class="info-field">
+                <span>Имя</span>
+                <p>{{user.first_name}}</p>
+            </div>
+            <div class="info-field">
+                <span>Фамилия</span>
+                <p>{{user.last_name}}</p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
