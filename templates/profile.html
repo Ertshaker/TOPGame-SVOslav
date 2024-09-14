@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Профиль {{ user.username }}</title>
     <link rel="stylesheet" href="{% static 'css/profile_styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/header_styles.css' %}">
 </head>
@@ -33,6 +33,26 @@
                 <p>{{ user.last_name }}</p>
             </div>
         </div>
+    </div>
+    <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="review">
+                <div class="game" onclick="window.location='/game/{{review.game.id}}'">
+                    {% if review.game.path_to_img %}
+                        <img src="{{ review.game.path_to_img.url }}">
+                    {% endif %}
+                    <p>{{ review.game.name }}</p>
+                </div>
+                <label>
+                    <textarea readonly class="text-input">{{ review.text }}</textarea>
+                    <p style="margin-top: 0; border-color: white" class="rating-input">
+                        {{ review.rate }}
+                        <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
+                    </p>
+                </label>
+            </div>
+        {% endfor %}
     </div>
 </div>
 </body>

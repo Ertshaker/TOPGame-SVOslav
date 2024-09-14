@@ -52,3 +52,74 @@ body {
     padding: 2px 20px 5px 20px;
     background: rgba(0, 0, 0, 0.1);
 }
+
+.reviews {
+    display: flex;
+    background-color: white;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.review {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    border-radius: 20px;
+    gap: 10px;
+    padding: 10px;
+    background: black;
+    justify-items: center;
+    box-shadow: 0 0 10px 0 black inset, 0 0 10px 0 black;
+}
+
+.review > * {
+    background: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.game {
+    width: 110px;
+    cursor: pointer;
+}
+
+.game > p {
+    text-wrap: wrap;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.game > img {
+    display: block;
+    border-radius: 10px;
+    border: 2px solid black;
+    height: 150px;
+    width: 100px;
+    object-fit: cover;
+    margin-left: 4px;
+}
+
+.text-input {
+    font-size: 16px;
+    width: 600px;
+    height: 200px;
+    text-align: justify;
+    overflow-y: auto;
+    resize: none;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    grid-column: 1 / span 3;
+}
+
+.rating-input {
+    border: 2px solid black;
+    width: 90px;
+    padding: 5px 5px;
+    font-size: 20px;
+    font-weight: bold;
+    grid-column: 1;
+    border-radius: 10px;
+}

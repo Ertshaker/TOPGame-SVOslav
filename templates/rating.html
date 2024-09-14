@@ -5,24 +5,28 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/rating_styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/header_styles.css' %}">
-    <title>Title</title>
+    <title>Рейтинг</title>
 </head>
 <body>
 {% include 'header.html' %}
 <div class="wrapper">
     <div class="first-place">
-        <div class="game-card" onclick="window.location='/game/{{top1.id}}'">
-            <img src="{{top1.path_to_img.url}}" alt="ТИММИИИ">
+        <div class="game-card" onclick="window.location='/game/{{ top1.id }}'">
+            <img src="{{ top1.path_to_img.url }}" alt="ТИММИИИ">
             <div class="game-info">
-                <h2 class="gold-gradient">{{top1.name}}</h2>
+                <h2 class="gold-gradient">{{ top1.name }}</h2>
                 <p>Рейтинг критиков</p>
                 <div class="rating">
-                    <a>{{top1.general_rate}}</a>
+                    <a>{{ top1.general_rate }}</a>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </div>
                 <p>Рейтинг пользователей</p>
                 <div class="rating">
-                    <a>{{top1.user_rate}}</a>
+                    {% if top1.user_rate != 0.0 %}
+                        <a>{{ top1.user_rate }}</a>
+                    {% else %}
+                        <a>—</a>
+                    {% endif %}
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </div>
             </div>
@@ -30,36 +34,44 @@
     </div>
     <div class="too-close">
         <div class="second-place">
-            <div class="game-card"  onclick="window.location='/game/{{top2.id}}'">
-                <img src="{{top2.path_to_img.url}}" alt="ТИММИИИ">
+            <div class="game-card" onclick="window.location='/game/{{ top2.id }}'">
+                <img src="{{ top2.path_to_img.url }}" alt="ТИММИИИ">
                 <div class="game-info">
-                    <h2 class="silver-gradient">{{top2.name}}</h2>
+                    <h2 class="silver-gradient">{{ top2.name }}</h2>
                     <p>Рейтинг критиков</p>
                     <div class="rating">
-                        <a>{{top2.general_rate}}</a>
+                        <a>{{ top2.general_rate }}</a>
                         <img src="{% static 'img/index/star-icon.svg' %}">
                     </div>
                     <p>Рейтинг пользователей</p>
                     <div class="rating">
-                        <a>{{top2.user_rate}}</a>
+                        {% if top2.user_rate != 0.0 %}
+                            <a>{{ top2.user_rate }}</a>
+                        {% else %}
+                            <a>—</a>
+                        {% endif %}
                         <img src="{% static 'img/index/star-icon.svg' %}">
                     </div>
                 </div>
             </div>
         </div>
         <div class="third-place">
-            <div class="game-card" onclick="window.location='/game/{{top3.id}}'">
-                <img src="{{top3.path_to_img.url}}" alt="ТИММИИИ">
+            <div class="game-card" onclick="window.location='/game/{{ top3.id }}'">
+                <img src="{{ top3.path_to_img.url }}" alt="ТИММИИИ">
                 <div class="game-info">
-                    <h2 class="bronze-gradient">{{top3.name}}</h2>
+                    <h2 class="bronze-gradient">{{ top3.name }}</h2>
                     <p>Рейтинг критиков</p>
                     <div class="rating">
-                        <a>{{top3.general_rate}}</a>
+                        <a>{{ top3.general_rate }}</a>
                         <img src="{% static 'img/index/star-icon.svg' %}">
                     </div>
                     <p>Рейтинг пользователей</p>
                     <div class="rating">
-                        <a>{{top3.user_rate}}</a>
+                        {% if top3.user_rate != 0.0 %}
+                            <a>{{ top3.user_rate }}</a>
+                        {% else %}
+                            <a>—</a>
+                        {% endif %}
                         <img src="{% static 'img/index/star-icon.svg' %}">
                     </div>
                 </div>
@@ -68,24 +80,28 @@
     </div>
     <div class="loosers">
         {% for game in sorted_games %}
-        <div class="more-place">
-            <div class="game-card" onclick="window.location='/game/{{game.id}}'">
-                <img src="{{ game.path_to_img.url }}" alt="ТИММИИИ">
-                <div class="game-info">
-                    <h2>{{game.name}}</h2>
-                    <p>Рейтинг критиков</p>
-                    <div class="rating">
-                        <a>{{game.general_rate}}</a>
-                        <img src="{% static 'img/index/star-icon.svg' %}">
-                    </div>
-                    <p>Рейтинг пользователей</p>
-                    <div class="rating">
-                        <a>{{game.user_rate}}</a>
-                        <img src="{% static 'img/index/star-icon.svg' %}">
+            <div class="more-place">
+                <div class="game-card" onclick="window.location='/game/{{ game.id }}'">
+                    <img src="{{ game.path_to_img.url }}" alt="ТИММИИИ">
+                    <div class="game-info">
+                        <h2>{{ game.name }}</h2>
+                        <p>Рейтинг критиков</p>
+                        <div class="rating">
+                            <a>{{ game.general_rate }}</a>
+                            <img src="{% static 'img/index/star-icon.svg' %}">
+                        </div>
+                        <p>Рейтинг пользователей</p>
+                        <div class="rating">
+                            {% if game.user_rate != 0.0 %}
+                                <a>{{ game.user_rate }}</a>
+                            {% else %}
+                                <a>—</a>
+                            {% endif %}
+                            <img src="{% static 'img/index/star-icon.svg' %}">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>

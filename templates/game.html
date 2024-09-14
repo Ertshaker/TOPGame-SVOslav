@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ game.name }}</title>
     <link rel="stylesheet" href="{% static 'css/game_styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/header_styles.css' %}">
 </head>
@@ -28,28 +28,44 @@
             <tr>
                 <td><span style="font-weight: bold">Metacritic</span></td>
                 <td class="rating">
+                    {% if game.metacritic is not None %}
                     <span>{{ game.metacritic }}</span>
+                    {% else %}
+                        <span>-</span>
+                    {% endif %}
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">IGN</span></td>
                 <td class="rating">
+                    {% if game.IGN is not None %}
                     <span>{{ game.IGN }}</span>
+                    {% else %}
+                        <span>—</span>
+                    {% endif %}
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Gameinformer</span></td>
                 <td class="rating">
-                    <span>{{ game.game_informer }}</span>
+                    {% if game.game_informer is not None %}
+                        <span>{{ game.game_informer }}</span>
+                    {% else %}
+                        <span>—</span>
+                    {% endif %}
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Оценки пользователей</span></td>
                 <td class="rating">
+                    {% if game.user_rate != 0.0 %}
                     <span>{{ game.user_rate }}</span>
+                    {% else %}
+                        <span>—</span>
+                    {% endif %}
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
@@ -65,7 +81,7 @@
     {% endif %}
     <div class="reviews">
         <div class="review">
-            <div class="user">
+            <div class="user" onclick="window.location='/profile/{{ request.user.username }}'">
                 {% if request.user.avatar %}
                     <img src="{{ request.user.avatar.url }}">
                 {% endif %}
@@ -92,7 +108,7 @@
     <div class="other-reviews">
         {% for review in ratings %}
             <div class="review">
-                <div class="user">
+                <div class="user" onclick="window.location='/profile/{{ review.user.username }}'">
                     {% if review.user.avatar %}
                         <img src="{{ review.user.avatar.url }}">
                     {% endif %}

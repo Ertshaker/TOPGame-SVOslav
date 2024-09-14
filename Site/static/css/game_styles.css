@@ -94,6 +94,7 @@ body > * {
 
 .user {
     width: 110px;
+    cursor: pointer;
 }
 
 .user > p {
