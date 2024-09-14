@@ -48,7 +48,7 @@ class RegistrationForm(forms.Form):
                                  widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Имя'}))
     last_name = forms.CharField(label='Фамилия', max_length=30,
                                 widget=forms.TextInput(attrs={'type': 'text', 'placeholder': 'Фамилия'}))
-    avatar = forms.ImageField(label='Изображение', required=True, widget=forms.ClearableFileInput(attrs={'class': 'fileinput'}))
+    avatar = forms.ImageField(label='Изображение', required=False, widget=forms.ClearableFileInput(attrs={'class': 'fileinput'}))
 
 
 class LoginForm(forms.Form):
