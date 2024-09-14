@@ -97,6 +97,11 @@ body > * {
     cursor: pointer;
 }
 
+.user:hover {
+    background: lightgray;
+    transition: 0.2s ease;
+}
+
 .user > p {
     text-wrap: wrap;
     font-size: 16px;

@@ -83,6 +83,11 @@ body {
     cursor: pointer;
 }
 
+.game:hover {
+    background: lightgray;
+    transition: 0.2s ease;
+}
+
 .game > p {
     text-wrap: wrap;
     font-size: 16px;

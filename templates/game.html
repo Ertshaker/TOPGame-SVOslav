@@ -29,7 +29,7 @@
                 <td><span style="font-weight: bold">Metacritic</span></td>
                 <td class="rating">
                     {% if game.metacritic is not None %}
-                    <span>{{ game.metacritic }}</span>
+                        <span>{{ game.metacritic }}</span>
                     {% else %}
                         <span>-</span>
                     {% endif %}
@@ -40,7 +40,7 @@
                 <td><span style="font-weight: bold">IGN</span></td>
                 <td class="rating">
                     {% if game.IGN is not None %}
-                    <span>{{ game.IGN }}</span>
+                        <span>{{ game.IGN }}</span>
                     {% else %}
                         <span>—</span>
                     {% endif %}
@@ -62,7 +62,7 @@
                 <td><span style="font-weight: bold">Оценки пользователей</span></td>
                 <td class="rating">
                     {% if game.user_rate != 0.0 %}
-                    <span>{{ game.user_rate }}</span>
+                        <span>{{ game.user_rate }}</span>
                     {% else %}
                         <span>—</span>
                     {% endif %}
@@ -76,35 +76,37 @@
         </div>
     </div>
     <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
-    {% if own_review %}
+    {% if own_review and request.user.is_authenticated %}
         <h2 style="text-align: center; font-size: 32px">Ваш отзыв</h2>
     {% endif %}
-    <div class="reviews">
-        <div class="review">
-            <div class="user" onclick="window.location='/profile/{{ request.user.username }}'">
-                {% if request.user.avatar %}
-                    <img src="{{ request.user.avatar.url }}">
+    {% if request.user.is_authenticated %}
+        <div class="reviews">
+            <div class="review">
+                <div class="user" onclick="window.location='/profile/{{ request.user.username }}'">
+                    {% if request.user.avatar %}
+                        <img src="{{ request.user.avatar.url }}">
+                    {% endif %}
+                    <p>{{ request.user.username }}</p>
+                </div>
+                {% if not own_review %}
+                    <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ AddReviewForm.text }}
+                        {{ AddReviewForm.rate }}
+                        <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
+                    </form>
+                {% else %}
+                    <label>
+                        <textarea readonly class="text-input">{{ own_review.text }}</textarea>
+                        <p style="margin-top: 0; border: 0" class="rating-input">
+                            {{ own_review.rate }}
+                            <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
+                        </p>
+                    </label>
                 {% endif %}
-                <p>{{ request.user.username }}</p>
             </div>
-            {% if request.user.is_authenticated and not own_review %}
-                <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ AddReviewForm.text }}
-                    {{ AddReviewForm.rate }}
-                    <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
-                </form>
-            {% else %}
-                <label>
-                    <textarea readonly class="text-input">{{ own_review.text }}</textarea>
-                    <p style="margin-top: 0; border: 0" class="rating-input">
-                        {{ own_review.rate }}
-                        <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
-                    </p>
-                </label>
-            {% endif %}
         </div>
-    </div>
+    {% endif %}
     <div class="other-reviews">
         {% for review in ratings %}
             <div class="review">
