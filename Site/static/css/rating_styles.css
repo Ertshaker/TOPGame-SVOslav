@@ -76,6 +76,7 @@ span {
 .game-info > h2 {
     font-size: 48px;
     margin-block: 0;
+    font-family: "PT Sans", sans-serif;
 }
 
 .game-info > h2 {
@@ -141,8 +142,9 @@ span {
 .wrapper {
     box-sizing: border-box;
     margin: 1%;
-    padding: 4% 2%;
+    padding: 4%;
     background: white;
+    border-radius: 40px;
 }
 
 .gold-gradient {

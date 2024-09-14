@@ -16,7 +16,7 @@
         </div>
         <table class="game-ratings">
             <tr>
-                <td style="font-size: 32px; font-weight: bold">{{ game.name }}</td>
+                <td style="font-size: 42px; font-weight: bold; font-family: 'PT Sans', sans-serif">{{ game.name }}</td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Общий рейтинг критиков</span></td>
@@ -71,13 +71,13 @@
             </tr>
         </table>
         <div class="game-description">
-            <h2 style="font-size: 72px;margin-top: 0">Описание</h2>
-            <p style="font-size: 16px">{{ game.description }}</p>
+            <h2 style="font-size: 72px;margin-top: 0; font-family: 'PT Sans', sans-serif;">Описание</h2>
+            <p style="font-size: 22px">{{ game.description }}</p>
         </div>
     </div>
-    <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
+    <h2 style="text-align: center; font-size: 72px; font-family: 'PT Sans', sans-serif;">Отзывы</h2>
     {% if own_review and request.user.is_authenticated %}
-        <h2 style="text-align: center; font-size: 32px">Ваш отзыв</h2>
+        <h2 style="text-align: center; font-size: 32px; font-family: 'PT Sans', sans-serif;">Ваш отзыв</h2>
     {% endif %}
     {% if request.user.is_authenticated %}
         <div class="reviews">
