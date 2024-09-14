@@ -12,7 +12,7 @@
 {% include 'header.html' %}
 <div class="wrapper">
     <div class="profile">
-        {% if request.user.avatar %}
+        {% if user.avatar %}
         <img class="profile-image" src="{{ user.avatar.url }}" alt="АЛЬТУШКА">
         {% endif %}
         <div class="profile-info">

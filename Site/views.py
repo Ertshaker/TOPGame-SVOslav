@@ -32,10 +32,12 @@ class GameDetailView(DetailView):
     def get(self, request, *args, **kwargs):
         game = self.get_object()
         user: Account = request.user
+
         try:
             review = Rating.objects.get(user=user.id, game=game.id)
         except:
             review = None
+
         ratings = Rating.objects.exclude(user=user.id, game=game.id).filter(game=game.id)
         self.extra_context["AddReviewForm"] = AddReviewForm()
         self.extra_context["user"] = user

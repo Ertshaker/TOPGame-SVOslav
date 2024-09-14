@@ -12,71 +12,77 @@
 <div class="wrapper">
     <div class="game-card">
         <div class="game-info">
-            <img src="{{game.path_to_img.url}}">
+            <img src="{{ game.path_to_img.url }}">
         </div>
         <table class="game-ratings">
             <tr>
-                <td style="font-size: 32px; font-weight: bold">{{game.name}}</td>
+                <td style="font-size: 32px; font-weight: bold">{{ game.name }}</td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Общий рейтинг критиков</span></td>
                 <td class="rating">
-                    <span>{{game.general_rate}}</span>
+                    <span>{{ game.general_rate }}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Metacritic</span></td>
                 <td class="rating">
-                    <span>{{game.metacritic}}</span>
+                    <span>{{ game.metacritic }}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">IGN</span></td>
                 <td class="rating">
-                    <span>{{game.IGN}}</span>
+                    <span>{{ game.IGN }}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Gameinformer</span></td>
                 <td class="rating">
-                    <span>{{game.game_informer}}</span>
+                    <span>{{ game.game_informer }}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
             <tr>
                 <td><span style="font-weight: bold">Оценки пользователей</span></td>
                 <td class="rating">
-                    <span>{{game.user_rate}}</span>
+                    <span>{{ game.user_rate }}</span>
                     <img src="{% static 'img/index/star-icon.svg' %}">
                 </td>
             </tr>
         </table>
         <div class="game-description">
             <h2 style="font-size: 72px;margin-top: 0">Описание</h2>
-            <p style="font-size: 16px">{{game.description}}</p>
+            <p style="font-size: 16px">{{ game.description }}</p>
         </div>
     </div>
     <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
     <div class="reviews">
         <div class="own-review">
             <div class="user">
-                <img src="{{request.user.avatar.url}}">
-                <span>{{request.user.username}}</span>
+                {% if request.user.avatar %}
+                    <img src="{{ request.user.avatar.url }}">
+                {% endif %}
+                <p>{{ request.user.username }}</p>
             </div>
-            {% if request.user.is_authenticated %}
-            <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ AddReviewForm.text }}
-                {{ AddReviewForm.rate }}
-                <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
-            </form>
+            {% if request.user.is_authenticated and not own_review %}
+                <form class="leave-review" id="leave-review-form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ AddReviewForm.text }}
+                    {{ AddReviewForm.rate }}
+                    <input name="add_review_input" type="submit" class="add-review-button" value="Отправить отзыв">
+                </form>
             {% else %}
-            Мой отзыв
-            {{own_review.text}}
-            {{own_review.rate}}
+                <label>
+                <textarea readonly class="text-input">{{ own_review.text }}</textarea>
+                <p style="margin-top: 0" class="rating-input">
+                    {{ own_review.rate }}
+                    <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
+                </p>
+                </label>
             {% endif %}
         </div>
 

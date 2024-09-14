@@ -26,6 +26,7 @@ body {
     object-fit: cover;
     border: 4px solid black;
     border-radius: 100000px;
+        box-shadow: 0 0 10px 0 black inset, 0 0 10px 0 black;
 }
 
 .profile-info {
@@ -42,6 +43,7 @@ body {
 }
 
 .info-field > p {
+    min-height: 1em;
     font-size: 32px;
     text-wrap: wrap;
     word-break: break-all;
