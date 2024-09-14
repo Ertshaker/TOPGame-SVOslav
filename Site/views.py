@@ -177,32 +177,7 @@ def rating(request):
     top2 = top_games[1]
     top3 = top_games[2]
 
-    top3_games = [top1, top2, top3]
-    # for game in top3_games:
-    #     reviews = Rating.objects.filter(game=game.id)
-    #     for review in reviews:
-    #         game.user_rate += review.rate
-    #     if len(reviews) == 0:
-    #         game.user_rate = 0
-    #     else:
-    #         game.user_rate /= len(reviews)
-    #     game.user_rate = round(game.user_rate, 2)
-    # for game in top3_games:
-    #     game.general_rate = round(((game.game_informer + game.IGN + (game.metacritic / 10)) / 3), 2)
-
     sorted_games = top_games.exclude(id__in=[top1.id, top2.id, top3.id])
-
-    # for game in sorted_games:
-    #     reviews = Rating.objects.filter(game=game.id)
-    #     for review in reviews:
-    #         game.user_rate += review.rate
-    #     if len(reviews) == 0:
-    #         game.user_rate = 0
-    #     else:
-    #         game.user_rate /= len(reviews)
-    #     game.user_rate = round(game.user_rate, 2)
-    # for game in sorted_games:
-    #     game.general_rate = round(((game.game_informer + game.IGN + (game.metacritic / 10)) / 3), 2)
 
     return render(request, 'rating.html',
                   {'sorted_games': sorted_games, 'top1': top1, 'top2': top2, 'top3': top3})
@@ -218,9 +193,9 @@ class UserDetailView(DetailView):
         if not request.user.is_authenticated:
             HttpResponseRedirect('/login', locals())
         user = self.get_object()
-        self.extra_context["is_current_user"] = request.user.username == kwargs["username"]
-        self.extra_context["Users"] = Account.objects.all()
-        self.extra_context['page_name'] = user.username
+        reviews = Rating.objects.filter(user=user)
+        self.extra_context["reviews"] = reviews
+
         return super().get(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
