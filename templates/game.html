@@ -60,8 +60,11 @@
         </div>
     </div>
     <h2 style="text-align: center; font-size: 72px">Отзывы</h2>
+    {% if own_review %}
+        <h2 style="text-align: center; font-size: 32px">Ваш отзыв</h2>
+    {% endif %}
     <div class="reviews">
-        <div class="own-review">
+        <div class="review">
             <div class="user">
                 {% if request.user.avatar %}
                     <img src="{{ request.user.avatar.url }}">
@@ -77,22 +80,33 @@
                 </form>
             {% else %}
                 <label>
-                <textarea readonly class="text-input">{{ own_review.text }}</textarea>
-                <p style="margin-top: 0" class="rating-input">
-                    {{ own_review.rate }}
-                    <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
-                </p>
+                    <textarea readonly class="text-input">{{ own_review.text }}</textarea>
+                    <p style="margin-top: 0; border: 0" class="rating-input">
+                        {{ own_review.rate }}
+                        <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
+                    </p>
                 </label>
             {% endif %}
         </div>
-
-        <!--div class="other-reviews">
-            Отзывы
-            {% for review in ratings %}
-            {{review.text}}
-            {{review.rate}}
-            {% endfor %}
-        </div-->
+    </div>
+    <div class="other-reviews">
+        {% for review in ratings %}
+            <div class="review">
+                <div class="user">
+                    {% if review.user.avatar %}
+                        <img src="{{ review.user.avatar.url }}">
+                    {% endif %}
+                    <p>{{ review.user.username }}</p>
+                </div>
+                <label>
+                    <textarea readonly class="text-input">{{ review.text }}</textarea>
+                    <p style="margin-top: 0; border-color: white" class="rating-input">
+                        {{ review.rate }}
+                        <img style="width: 20px; height: 20px" src="{% static 'img/index/star-icon.svg' %}">
+                    </p>
+                </label>
+            </div>
+        {% endfor %}
     </div>
 </div>
 </body>
