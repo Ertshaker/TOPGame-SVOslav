@@ -6,13 +6,17 @@ body {
     background: black;
 }
 
+body > * {
+    font-family: "Open Sans", serif;
+}
+
 .wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 560px;
-    height: 830px;
+    height: 920px;
     text-align: center;
     border-radius: 12px;
     padding: 10px 20px;
@@ -22,10 +26,26 @@ body {
 
 .wrapper h2 {
     position: relative;
-    margin-bottom: 0;
     font-size: 48px;
-    font-family: "PT Sans";
+    font-family: "PT Sans", serif;
     color: #000000;
+}
+
+.wrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+form > input {
+    margin: 0;
+}
+
+form > span {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px 0 10px 20px;
 }
 
 .input-field {
@@ -58,7 +78,7 @@ a.sign-up:hover {
     border-radius: 20px;
     width: 250px;
     height: 55px;
-    font-family: "PT Sans";
+    font-family: "PT Sans", serif;
     font-size: 29px;
 }
 
@@ -72,13 +92,11 @@ input[type="password"],
 input[type="email"] {
     border-radius: 20px;
     background: transparent;
-    margin: 15px;
-    border: 3px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     width: 430px;
     height: 70px;
     padding: 20px 40px 20px 20px;
     backdrop-filter: blur(15px);
-    font-family: "Open Sans";
     font-size: 28px;
 }
 

@@ -169,7 +169,19 @@ def rating(request):
         game.user_rate = round(game.user_rate, 2)
         game.save()
     for game in games:
-        game.general_rate = round(((game.game_informer + game.IGN + (game.metacritic / 10)) / 3), 2)
+        count = game.general_rate = 0
+        if game.game_informer is not None:
+            game.general_rate += game.game_informer
+            count += 1
+
+        if game.IGN is not None:
+            game.general_rate += game.IGN
+            count += 1
+
+        if game.metacritic is not None:
+            game.general_rate += game.metacritic / 10
+            count += 1
+        game.general_rate = round(game.general_rate / count, 2)
         game.save()
 
     top_games = games.order_by('-general_rate')

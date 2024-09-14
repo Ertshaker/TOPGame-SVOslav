@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="wrapper">
-    <button onclick="location.href = '/'" class="button_back" ></button>
+    <button onclick="location.href = '/'" class="button_back"></button>
     <h2>Регистрация</h2>
     <form method="post" action="#" enctype="multipart/form-data">
         {% csrf_token %}
@@ -33,12 +33,15 @@
         {{ registration_form.password }}
         {{ registration_form.confirm_password }}
         {{ registration_form.email }}
-        {{ registration_form.avatar }}
+        <span style="font-size: 20px">
+            Аватар
+            {{ registration_form.avatar }}
+        </span>
         <button type="submit" class="register">Регистрация</button>
-        <p>Есть аккаунт?<br/>
-            <a href="/login">войти</a>
-        </p>
     </form>
+    <p>Есть аккаунт?<br/>
+        <a href="/login">войти</a>
+    </p>
 </div>
 </body>
 </html>
