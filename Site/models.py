@@ -16,7 +16,7 @@ class Game(models.Model):
 
 
 class Account(AbstractUser):
-    avatar = models.ImageField(upload_to='avatars/')
+    avatar = models.ImageField(upload_to='avatars/', default='default_avatar.jpg')
 
     class Meta(AbstractUser.Meta):
         swappable = "AUTH_USER_MODEL"

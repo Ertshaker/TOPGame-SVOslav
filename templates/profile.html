@@ -13,24 +13,25 @@
 <div class="wrapper">
     <div class="profile">
         {% if request.user.avatar %}
-        <img class="profile-image" src="{{ user.avatar.url }}" alt="АЛЬТУШКА">
+            <img class="profile-image" src="{{ user.avatar.url }}" alt="АЛЬТУШКА">
+
         {% endif %}
         <div class="profile-info">
             <div class="info-field">
                 <span>Никнейм</span>
-                <p>{{user.username}}</p>
+                <p>{{ user.username }}</p>
             </div>
             <div class="info-field">
                 <span>Почта</span>
-                <p>{{user.email}}</p>
+                <p>{{ user.email }}</p>
             </div>
             <div class="info-field">
                 <span>Имя</span>
-                <p>{{user.first_name}}</p>
+                <p>{{ user.first_name }}</p>
             </div>
             <div class="info-field">
                 <span>Фамилия</span>
-                <p>{{user.last_name}}</p>
+                <p>{{ user.last_name }}</p>
             </div>
         </div>
     </div>

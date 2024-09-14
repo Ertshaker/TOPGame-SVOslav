@@ -128,10 +128,13 @@ def user_register(request):
         email = form.cleaned_data.get('email')
         first_name = form.cleaned_data.get('first_name')
         last_name = form.cleaned_data.get('last_name')
+        avatar = form.cleaned_data.get('avatar')
+        if avatar is None:
+            avatar = "default_avatar.jpg"
         user = Account.objects.create_user(username, email, password)
         user.last_name = last_name
         user.first_name = first_name
-        user.avatar = form.cleaned_data.get('avatar')
+        user.avatar = avatar
 
         if user is None:
             return HttpResponseRedirect('/login', locals())
