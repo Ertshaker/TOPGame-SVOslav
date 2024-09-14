@@ -56,8 +56,8 @@ body > * {
     display: flex;
     flex-wrap: wrap;
     flex-grow: 0;
-    gap: 50px 0;
-    justify-content: space-between;
+    gap: 50px 20px;
+    justify-content: flex-start;
 }
 
 .game-image img {

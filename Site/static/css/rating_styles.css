@@ -38,9 +38,8 @@ span {
 
 .too-close .game-card {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: row;
-    width: 650px;
+    width: 600px;
 }
 
 .game-card {
@@ -142,7 +141,7 @@ span {
 .wrapper {
     box-sizing: border-box;
     margin: 1%;
-    padding: 4% 4%;
+    padding: 4% 2%;
     background: white;
 }
 
